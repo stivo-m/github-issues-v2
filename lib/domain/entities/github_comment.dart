@@ -1,3 +1,4 @@
+// Package imports:
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'github_comment.freezed.dart';

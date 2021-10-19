@@ -1,3 +1,4 @@
+// Project imports:
 import 'package:github_issues/domain/entities/user_profile.dart';
 import 'package:github_issues/infrastructure/repositories/auth_repository.dart';
 import 'package:github_issues/infrastructure/repositories/cache_repository.dart';

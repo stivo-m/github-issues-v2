@@ -1,4 +1,7 @@
+// Package imports:
 import 'package:flutter_test/flutter_test.dart';
+
+// Project imports:
 import 'package:github_issues/domain/entities/user_profile.dart';
 import 'package:github_issues/domain/objects/email.dart';
 import 'package:github_issues/domain/objects/name.dart';

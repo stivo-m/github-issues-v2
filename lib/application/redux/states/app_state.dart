@@ -1,5 +1,8 @@
+// Package imports:
 import 'package:async_redux/async_redux.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
+
+// Project imports:
 import 'package:github_issues/domain/entities/github_issue.dart';
 import 'package:github_issues/domain/entities/user_profile.dart';
 import 'package:github_issues/domain/objects/enums.dart';

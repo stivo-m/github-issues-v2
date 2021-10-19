@@ -1,4 +1,7 @@
+// Package imports:
 import 'package:freezed_annotation/freezed_annotation.dart';
+
+// Project imports:
 import 'package:github_issues/domain/entities/github_comment.dart';
 
 part 'github_issue.freezed.dart';

@@ -1,4 +1,7 @@
+// Flutter imports:
 import 'package:flutter/material.dart';
+
+// Project imports:
 import 'package:github_issues/presentation/theme/text_styles.dart';
 
 class Badge extends StatelessWidget {

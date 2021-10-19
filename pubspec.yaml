@@ -34,6 +34,8 @@ dependencies:
     sdk: flutter
   freezed: ^0.15.0+1
   freezed_annotation: ^0.15.0
+  http: ^0.13.4
+  intl: ^0.17.0
   json_annotation: ^4.3.0
   redux: ^5.0.0
   shared_preferences: ^2.0.8

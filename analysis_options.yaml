@@ -34,3 +34,4 @@ analyzer:
     - "**/*.freezed.dart"
   errors:
     invalid_annotation_target: ignore
+    prefer_single_quotes: true

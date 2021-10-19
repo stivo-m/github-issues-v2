@@ -1,8 +1,7 @@
-String issuesQuerry = r'''
-
-{
+String getIssuesQuerry = r'''
+query GetIssues($count: Int!){
   viewer {
-    issues(last: 100) {
+    issues(last: $count) {
       pageInfo {
         startCursor
         hasNextPage
@@ -15,11 +14,11 @@ String issuesQuerry = r'''
         closed
         closedAt
         createdAt
-        author{
+        author {
           login
         }
-        labels (first: 100){
-          nodes{
+        labels(first: 100) {
+          nodes {
             id
             description
           }
@@ -27,6 +26,7 @@ String issuesQuerry = r'''
         repository {
           id
           name
+          
         }
         title
         body
@@ -49,3 +49,9 @@ String issuesQuerry = r'''
 
 
 ''';
+
+Map<String, dynamic> getIssuesQueryVariables({required int count}) {
+  return {
+    'count': count,
+  };
+}

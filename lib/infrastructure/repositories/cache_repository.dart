@@ -1,5 +1,8 @@
-import 'package:github_issues/infrastructure/facades/i_cache_facade.dart';
+// Package imports:
 import 'package:shared_preferences/shared_preferences.dart';
+
+// Project imports:
+import 'package:github_issues/infrastructure/facades/i_cache_facade.dart';
 
 class CacheRepository implements ICacheFacade {
   static late SharedPreferences _preferences;

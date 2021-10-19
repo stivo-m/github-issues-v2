@@ -1,4 +1,7 @@
+// Package imports:
 import 'package:freezed_annotation/freezed_annotation.dart';
+
+// Project imports:
 import 'package:github_issues/domain/objects/email.dart';
 import 'package:github_issues/domain/objects/name.dart';
 
