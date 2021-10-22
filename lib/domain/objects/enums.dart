@@ -5,3 +5,5 @@ enum AuthStatus {
   authenticated,
   unathenticated,
 }
+
+enum AuthMethods { github }

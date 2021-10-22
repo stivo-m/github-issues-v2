@@ -1,5 +1,9 @@
+// Package imports:
+import 'package:firebase_auth/firebase_auth.dart';
+
 // Project imports:
 import 'package:github_issues/domain/entities/user_profile.dart';
+import 'package:github_issues/infrastructure/repositories/app_http_client.dart';
 import 'package:github_issues/infrastructure/repositories/auth_repository.dart';
 import 'package:github_issues/infrastructure/repositories/cache_repository.dart';
 
@@ -16,11 +20,17 @@ class AuthenticationService {
       authRepository: repository ??
           AuthRepository(
             iCacheFacade: CacheRepository(),
+            httpClient: AppHttpClient(),
+            firebaseAuth: FirebaseAuth.instance,
           ),
     );
   }
 
-  Future<UserProfile?>? loginWithGithub() {
-    return _instance?.loginWithGithub();
+  Future<UserProfile?>? loginWithGithub() async {
+    return await authRepository?.initGithubLogin();
+  }
+
+  Future<void>? logOut() {
+    return authRepository?.logOut();
   }
 }

@@ -1,5 +1,6 @@
 // Project imports:
-import 'package:github_issues/domain/entities/user_profile.dart';
+
+// Project imports:
 import 'package:github_issues/infrastructure/facades/i_cache_facade.dart';
 
 abstract class IAuthFacade {
@@ -9,7 +10,7 @@ abstract class IAuthFacade {
 
   final ICacheFacade cacheFacade;
 
-  Future<UserProfile> loginWithGithub(
+  Future<void> loginWithGithub(
     String code,
   );
 

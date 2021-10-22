@@ -25,4 +25,11 @@ class AppState with _$AppState {
 
   factory AppState.fromJson(Map<String, dynamic> json) =>
       _$AppStateFromJson(json);
+
+  factory AppState.initial() => AppState(
+    authStatus: AuthStatus.uninitiated,
+    issues: <GithubIssue?>[],
+    userProfile: UserProfile.initial(),
+    
+  );
 }

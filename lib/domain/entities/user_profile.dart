@@ -19,4 +19,11 @@ class UserProfile with _$UserProfile {
 
   factory UserProfile.fromJson(Map<String, dynamic> json) =>
       _$UserProfileFromJson(json);
+
+  factory UserProfile.initial() => UserProfile(
+        emailAddress: null,
+        firstName: null,
+        lastName: null,
+        role: null,
+      );
 }

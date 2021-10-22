@@ -22,7 +22,9 @@ class _$GithubOAuthResponseTearOff {
   const _$GithubOAuthResponseTearOff();
 
   _GithubOAuthResponse call(
-      {String? accessToken, String? tokenType, String? scope}) {
+      {@JsonKey(name: 'access_token') String? accessToken,
+      @JsonKey(name: 'token_type') String? tokenType,
+      @JsonKey(name: 'scope') String? scope}) {
     return _GithubOAuthResponse(
       accessToken: accessToken,
       tokenType: tokenType,
@@ -40,8 +42,11 @@ const $GithubOAuthResponse = _$GithubOAuthResponseTearOff();
 
 /// @nodoc
 mixin _$GithubOAuthResponse {
+  @JsonKey(name: 'access_token')
   String? get accessToken => throw _privateConstructorUsedError;
+  @JsonKey(name: 'token_type')
   String? get tokenType => throw _privateConstructorUsedError;
+  @JsonKey(name: 'scope')
   String? get scope => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -55,7 +60,10 @@ abstract class $GithubOAuthResponseCopyWith<$Res> {
   factory $GithubOAuthResponseCopyWith(
           GithubOAuthResponse value, $Res Function(GithubOAuthResponse) then) =
       _$GithubOAuthResponseCopyWithImpl<$Res>;
-  $Res call({String? accessToken, String? tokenType, String? scope});
+  $Res call(
+      {@JsonKey(name: 'access_token') String? accessToken,
+      @JsonKey(name: 'token_type') String? tokenType,
+      @JsonKey(name: 'scope') String? scope});
 }
 
 /// @nodoc
@@ -97,7 +105,10 @@ abstract class _$GithubOAuthResponseCopyWith<$Res>
           $Res Function(_GithubOAuthResponse) then) =
       __$GithubOAuthResponseCopyWithImpl<$Res>;
   @override
-  $Res call({String? accessToken, String? tokenType, String? scope});
+  $Res call(
+      {@JsonKey(name: 'access_token') String? accessToken,
+      @JsonKey(name: 'token_type') String? tokenType,
+      @JsonKey(name: 'scope') String? scope});
 }
 
 /// @nodoc
@@ -137,16 +148,22 @@ class __$GithubOAuthResponseCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$_GithubOAuthResponse implements _GithubOAuthResponse {
-  _$_GithubOAuthResponse({this.accessToken, this.tokenType, this.scope});
+  _$_GithubOAuthResponse(
+      {@JsonKey(name: 'access_token') this.accessToken,
+      @JsonKey(name: 'token_type') this.tokenType,
+      @JsonKey(name: 'scope') this.scope});
 
   factory _$_GithubOAuthResponse.fromJson(Map<String, dynamic> json) =>
       _$$_GithubOAuthResponseFromJson(json);
 
   @override
+  @JsonKey(name: 'access_token')
   final String? accessToken;
   @override
+  @JsonKey(name: 'token_type')
   final String? tokenType;
   @override
+  @JsonKey(name: 'scope')
   final String? scope;
 
   @override
@@ -183,18 +200,21 @@ class _$_GithubOAuthResponse implements _GithubOAuthResponse {
 
 abstract class _GithubOAuthResponse implements GithubOAuthResponse {
   factory _GithubOAuthResponse(
-      {String? accessToken,
-      String? tokenType,
-      String? scope}) = _$_GithubOAuthResponse;
+      {@JsonKey(name: 'access_token') String? accessToken,
+      @JsonKey(name: 'token_type') String? tokenType,
+      @JsonKey(name: 'scope') String? scope}) = _$_GithubOAuthResponse;
 
   factory _GithubOAuthResponse.fromJson(Map<String, dynamic> json) =
       _$_GithubOAuthResponse.fromJson;
 
   @override
+  @JsonKey(name: 'access_token')
   String? get accessToken;
   @override
+  @JsonKey(name: 'token_type')
   String? get tokenType;
   @override
+  @JsonKey(name: 'scope')
   String? get scope;
   @override
   @JsonKey(ignore: true)

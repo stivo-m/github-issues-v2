@@ -24,9 +24,10 @@ class Home extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
               Header(
-                firstName: vm.userProfile!.firstName!.value.getOrElse(
-                  () => '',
-                ),
+                firstName: vm.userProfile!.firstName?.value.getOrElse(
+                      () => '',
+                    ) ??
+                    '',
               ),
               const SizedBox(
                 height: 20,
