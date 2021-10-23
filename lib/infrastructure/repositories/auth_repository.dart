@@ -10,11 +10,8 @@ import 'package:url_launcher/url_launcher.dart';
 
 // Project imports:
 import 'package:github_issues/domain/entities/github_oauth_response.dart';
-import 'package:github_issues/domain/entities/user_profile.dart';
 import 'package:github_issues/domain/objects/app_strings.dart';
-import 'package:github_issues/domain/objects/email.dart';
 import 'package:github_issues/domain/objects/endpoints.dart';
-import 'package:github_issues/domain/objects/name.dart';
 import 'package:github_issues/infrastructure/facades/i_auth_facade.dart';
 import 'package:github_issues/infrastructure/facades/i_cache_facade.dart';
 import 'package:github_issues/infrastructure/facades/i_http_client_facade.dart';
@@ -26,11 +23,13 @@ class AuthRepository implements IAuthFacade {
     required this.httpClient,
   });
 
-  final ICacheFacade iCacheFacade;
-  final FirebaseAuth firebaseAuth;
-  static StreamSubscription<dynamic>? _subscription;
-  final IHttpClient httpClient;
   static User? firebaseUser;
+
+  final FirebaseAuth firebaseAuth;
+  final IHttpClient httpClient;
+  final ICacheFacade iCacheFacade;
+
+  static StreamSubscription<dynamic>? _subscription;
 
   @override
   ICacheFacade get cacheFacade => iCacheFacade;
@@ -42,7 +41,13 @@ class AuthRepository implements IAuthFacade {
   }
 
   @override
-  Future<void> loginWithGithub(
+  Future<void>? login() async {
+    return await _initDeepLinkListener().then((User? _firebaseUser) {
+      firebaseUser = _firebaseUser;
+    });
+  }
+
+  Future<User?> loginWithGithub(
     String code,
   ) async {
     final http.Response response = await httpClient.callRest(
@@ -66,30 +71,16 @@ class AuthRepository implements IAuthFacade {
     final AuthCredential credential =
         GithubAuthProvider.credential(oAuthResponse.accessToken!);
 
-    firebaseUser = await firebaseAuth
-        .signInWithCredential(credential)
-        .then((UserCredential _user) => _user.user);
-
-    // print('firebase user: ${firebaseUser?.displayName?.toString()}');
-    // login with firebase
     cacheFacade.saveAccessToken(
       tokenName: authTokenText,
       token: oAuthResponse.accessToken!,
     );
-    // navigate the user to the home page.
-  }
 
-  Future<UserProfile> initGithubLogin() async {
-    await _initDeepLinkListener();
-
-    return UserProfile(
-      emailAddress: EmailAddress.withValue(input: firebaseUser?.email ?? ''),
-      firstName: Name.withValue(
-          input: firebaseAuth.currentUser?.displayName?.split(' ')[0] ?? ''),
-      lastName: Name.withValue(
-          input: firebaseAuth.currentUser?.displayName?.split(' ')[1] ?? ''),
-      role: null,
-    );
+    return await firebaseAuth
+        .signInWithCredential(credential)
+        .then((UserCredential _user) {
+      return _user.user;
+    });
   }
 
   Future<void> _startlogin() async {
@@ -105,23 +96,22 @@ class AuthRepository implements IAuthFacade {
   }
 
   // deep linking stuff
-  Future<void> _initDeepLinkListener() async {
+  Future<User?> _initDeepLinkListener() async {
+    User? _user;
     _startlogin();
     _subscription = linkStream.listen(
-      (String? link) {
-        String code = _getCode(link);
-        loginWithGithub(code);
+      (String? link) async {
+        if (link != null) {
+          String code = link.substring(link.indexOf(RegExp('code=')) + 5);
+          await loginWithGithub(code).then((firebaseUser) {
+            _user = firebaseUser;
+          }).catchError((e) {});
+        }
       },
       cancelOnError: true,
     );
-  }
 
-  static String _getCode(String? link) {
-    if (link == null) {
-      return '';
-    } else {
-      return link.substring(link.indexOf(RegExp('code=')) + 5);
-    }
+    return _user;
   }
 
   // dispose the deeplink listener

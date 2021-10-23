@@ -8,6 +8,11 @@ class CacheRepository implements ICacheFacade {
   static late SharedPreferences _preferences;
 
   @override
+  String? getAccessToken({required String tokenName}) {
+    return _preferences.getString(tokenName);
+  }
+
+  @override
   Future<bool> removeAccessToken({required String tokenName}) async {
     return await _preferences.remove(tokenName);
   }
@@ -18,7 +23,7 @@ class CacheRepository implements ICacheFacade {
     return await _preferences.setString(tokenName, token);
   }
 
-  static void init() async {
+  static dynamic init() async {
     _preferences = await SharedPreferences.getInstance();
   }
 }

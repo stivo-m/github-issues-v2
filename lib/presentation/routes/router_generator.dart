@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 
 // Project imports:
 import 'package:github_issues/presentation/authentication/login_page.dart';
+import 'package:github_issues/presentation/authentication/profile_page.dart';
 import 'package:github_issues/presentation/home/home.dart';
 import 'package:github_issues/presentation/routes/routes.dart';
 
@@ -16,7 +17,12 @@ class RouterGenerator {
 
       case AppRoutes.loginRoute:
         return MaterialPageRoute(
-          builder: (_) => LoginPage(),
+          builder: (_) => const LoginPage(),
+        );
+
+      case AppRoutes.profileRoute:
+        return MaterialPageRoute(
+          builder: (_) => const ProfilePage(),
         );
 
       default:

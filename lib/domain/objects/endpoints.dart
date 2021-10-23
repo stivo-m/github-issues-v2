@@ -6,3 +6,4 @@ String githubAuthEndpoint =
 
 const String githubAccessTokenEndpoint =
     'https://github.com/login/oauth/access_token';
+const String githubGraphqlEndpoint = 'https://api.github.com/graphql';

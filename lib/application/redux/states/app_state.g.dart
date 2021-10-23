@@ -12,22 +12,17 @@ _$_AppState _$$_AppStateFromJson(Map<String, dynamic> json) => _$_AppState(
               ? null
               : GithubIssue.fromJson(e as Map<String, dynamic>))
           .toList(),
-      userProfile: json['userProfile'] == null
-          ? null
-          : UserProfile.fromJson(json['userProfile'] as Map<String, dynamic>),
-      authStatus: $enumDecodeNullable(_$AuthStatusEnumMap, json['authStatus'],
-          unknownValue: AuthStatus.unathenticated),
+      themeMode: $enumDecodeNullable(_$ThemeModeEnumMap, json['themeMode']),
     );
 
 Map<String, dynamic> _$$_AppStateToJson(_$_AppState instance) =>
     <String, dynamic>{
       'issues': instance.issues,
-      'userProfile': instance.userProfile,
-      'authStatus': _$AuthStatusEnumMap[instance.authStatus],
+      'themeMode': _$ThemeModeEnumMap[instance.themeMode],
     };
 
-const _$AuthStatusEnumMap = {
-  AuthStatus.uninitiated: 'uninitiated',
-  AuthStatus.authenticated: 'authenticated',
-  AuthStatus.unathenticated: 'unathenticated',
+const _$ThemeModeEnumMap = {
+  ThemeMode.system: 'system',
+  ThemeMode.light: 'light',
+  ThemeMode.dark: 'dark',
 };

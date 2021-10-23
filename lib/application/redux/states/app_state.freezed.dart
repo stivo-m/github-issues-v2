@@ -23,15 +23,11 @@ class _$AppStateTearOff {
 
   _AppState call(
       {List<GithubIssue?>? issues,
-      UserProfile? userProfile,
-      @JsonKey(unknownEnumValue: AuthStatus.unathenticated)
-          AuthStatus? authStatus,
-      @JsonKey(ignore: true)
-          Wait? wait}) {
+      ThemeMode? themeMode,
+      @JsonKey(ignore: true) Wait? wait}) {
     return _AppState(
       issues: issues,
-      userProfile: userProfile,
-      authStatus: authStatus,
+      themeMode: themeMode,
       wait: wait,
     );
   }
@@ -47,9 +43,7 @@ const $AppState = _$AppStateTearOff();
 /// @nodoc
 mixin _$AppState {
   List<GithubIssue?>? get issues => throw _privateConstructorUsedError;
-  UserProfile? get userProfile => throw _privateConstructorUsedError;
-  @JsonKey(unknownEnumValue: AuthStatus.unathenticated)
-  AuthStatus? get authStatus => throw _privateConstructorUsedError;
+  ThemeMode? get themeMode => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
   Wait? get wait => throw _privateConstructorUsedError;
 
@@ -65,13 +59,8 @@ abstract class $AppStateCopyWith<$Res> {
       _$AppStateCopyWithImpl<$Res>;
   $Res call(
       {List<GithubIssue?>? issues,
-      UserProfile? userProfile,
-      @JsonKey(unknownEnumValue: AuthStatus.unathenticated)
-          AuthStatus? authStatus,
-      @JsonKey(ignore: true)
-          Wait? wait});
-
-  $UserProfileCopyWith<$Res>? get userProfile;
+      ThemeMode? themeMode,
+      @JsonKey(ignore: true) Wait? wait});
 }
 
 /// @nodoc
@@ -85,8 +74,7 @@ class _$AppStateCopyWithImpl<$Res> implements $AppStateCopyWith<$Res> {
   @override
   $Res call({
     Object? issues = freezed,
-    Object? userProfile = freezed,
-    Object? authStatus = freezed,
+    Object? themeMode = freezed,
     Object? wait = freezed,
   }) {
     return _then(_value.copyWith(
@@ -94,30 +82,15 @@ class _$AppStateCopyWithImpl<$Res> implements $AppStateCopyWith<$Res> {
           ? _value.issues
           : issues // ignore: cast_nullable_to_non_nullable
               as List<GithubIssue?>?,
-      userProfile: userProfile == freezed
-          ? _value.userProfile
-          : userProfile // ignore: cast_nullable_to_non_nullable
-              as UserProfile?,
-      authStatus: authStatus == freezed
-          ? _value.authStatus
-          : authStatus // ignore: cast_nullable_to_non_nullable
-              as AuthStatus?,
+      themeMode: themeMode == freezed
+          ? _value.themeMode
+          : themeMode // ignore: cast_nullable_to_non_nullable
+              as ThemeMode?,
       wait: wait == freezed
           ? _value.wait
           : wait // ignore: cast_nullable_to_non_nullable
               as Wait?,
     ));
-  }
-
-  @override
-  $UserProfileCopyWith<$Res>? get userProfile {
-    if (_value.userProfile == null) {
-      return null;
-    }
-
-    return $UserProfileCopyWith<$Res>(_value.userProfile!, (value) {
-      return _then(_value.copyWith(userProfile: value));
-    });
   }
 }
 
@@ -128,14 +101,8 @@ abstract class _$AppStateCopyWith<$Res> implements $AppStateCopyWith<$Res> {
   @override
   $Res call(
       {List<GithubIssue?>? issues,
-      UserProfile? userProfile,
-      @JsonKey(unknownEnumValue: AuthStatus.unathenticated)
-          AuthStatus? authStatus,
-      @JsonKey(ignore: true)
-          Wait? wait});
-
-  @override
-  $UserProfileCopyWith<$Res>? get userProfile;
+      ThemeMode? themeMode,
+      @JsonKey(ignore: true) Wait? wait});
 }
 
 /// @nodoc
@@ -150,8 +117,7 @@ class __$AppStateCopyWithImpl<$Res> extends _$AppStateCopyWithImpl<$Res>
   @override
   $Res call({
     Object? issues = freezed,
-    Object? userProfile = freezed,
-    Object? authStatus = freezed,
+    Object? themeMode = freezed,
     Object? wait = freezed,
   }) {
     return _then(_AppState(
@@ -159,14 +125,10 @@ class __$AppStateCopyWithImpl<$Res> extends _$AppStateCopyWithImpl<$Res>
           ? _value.issues
           : issues // ignore: cast_nullable_to_non_nullable
               as List<GithubIssue?>?,
-      userProfile: userProfile == freezed
-          ? _value.userProfile
-          : userProfile // ignore: cast_nullable_to_non_nullable
-              as UserProfile?,
-      authStatus: authStatus == freezed
-          ? _value.authStatus
-          : authStatus // ignore: cast_nullable_to_non_nullable
-              as AuthStatus?,
+      themeMode: themeMode == freezed
+          ? _value.themeMode
+          : themeMode // ignore: cast_nullable_to_non_nullable
+              as ThemeMode?,
       wait: wait == freezed
           ? _value.wait
           : wait // ignore: cast_nullable_to_non_nullable
@@ -178,11 +140,7 @@ class __$AppStateCopyWithImpl<$Res> extends _$AppStateCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$_AppState implements _AppState {
-  _$_AppState(
-      {this.issues,
-      this.userProfile,
-      @JsonKey(unknownEnumValue: AuthStatus.unathenticated) this.authStatus,
-      @JsonKey(ignore: true) this.wait});
+  _$_AppState({this.issues, this.themeMode, @JsonKey(ignore: true) this.wait});
 
   factory _$_AppState.fromJson(Map<String, dynamic> json) =>
       _$$_AppStateFromJson(json);
@@ -190,17 +148,14 @@ class _$_AppState implements _AppState {
   @override
   final List<GithubIssue?>? issues;
   @override
-  final UserProfile? userProfile;
-  @override
-  @JsonKey(unknownEnumValue: AuthStatus.unathenticated)
-  final AuthStatus? authStatus;
+  final ThemeMode? themeMode;
   @override
   @JsonKey(ignore: true)
   final Wait? wait;
 
   @override
   String toString() {
-    return 'AppState(issues: $issues, userProfile: $userProfile, authStatus: $authStatus, wait: $wait)';
+    return 'AppState(issues: $issues, themeMode: $themeMode, wait: $wait)';
   }
 
   @override
@@ -209,20 +164,14 @@ class _$_AppState implements _AppState {
         (other.runtimeType == runtimeType &&
             other is _AppState &&
             const DeepCollectionEquality().equals(other.issues, issues) &&
-            (identical(other.userProfile, userProfile) ||
-                other.userProfile == userProfile) &&
-            (identical(other.authStatus, authStatus) ||
-                other.authStatus == authStatus) &&
+            (identical(other.themeMode, themeMode) ||
+                other.themeMode == themeMode) &&
             (identical(other.wait, wait) || other.wait == wait));
   }
 
   @override
-  int get hashCode => Object.hash(
-      runtimeType,
-      const DeepCollectionEquality().hash(issues),
-      userProfile,
-      authStatus,
-      wait);
+  int get hashCode => Object.hash(runtimeType,
+      const DeepCollectionEquality().hash(issues), themeMode, wait);
 
   @JsonKey(ignore: true)
   @override
@@ -238,21 +187,15 @@ class _$_AppState implements _AppState {
 abstract class _AppState implements AppState {
   factory _AppState(
       {List<GithubIssue?>? issues,
-      UserProfile? userProfile,
-      @JsonKey(unknownEnumValue: AuthStatus.unathenticated)
-          AuthStatus? authStatus,
-      @JsonKey(ignore: true)
-          Wait? wait}) = _$_AppState;
+      ThemeMode? themeMode,
+      @JsonKey(ignore: true) Wait? wait}) = _$_AppState;
 
   factory _AppState.fromJson(Map<String, dynamic> json) = _$_AppState.fromJson;
 
   @override
   List<GithubIssue?>? get issues;
   @override
-  UserProfile? get userProfile;
-  @override
-  @JsonKey(unknownEnumValue: AuthStatus.unathenticated)
-  AuthStatus? get authStatus;
+  ThemeMode? get themeMode;
   @override
   @JsonKey(ignore: true)
   Wait? get wait;

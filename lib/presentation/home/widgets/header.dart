@@ -3,8 +3,8 @@ import 'package:flutter/material.dart';
 
 // Project imports:
 import 'package:github_issues/domain/objects/app_strings.dart';
+import 'package:github_issues/domain/objects/spacers.dart';
 import 'package:github_issues/presentation/home/widgets/search_input.dart';
-import 'package:github_issues/presentation/theme/text_styles.dart';
 
 class Header extends StatelessWidget {
   const Header({
@@ -27,6 +27,7 @@ class Header extends StatelessWidget {
       width: double.maxFinite,
       child: Column(
         children: <Widget>[
+          mediumVerticalSizedBox,
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
@@ -35,34 +36,30 @@ class Header extends StatelessWidget {
                 children: <Widget>[
                   Text(
                     'Hey, $firstName',
-                    style: headerStyle,
+                    style: Theme.of(context).textTheme.headline2,
                   ),
                   const SizedBox(
                     height: 10,
-                  ),
-                  Text(
-                    DateTime.now().toUtc().toString(),
-                    style: headerStyle,
                   ),
                 ],
               ),
               const Spacer(),
               IconButton(
                 onPressed: onProfileTapped,
-                icon: const Icon(Icons.person),
+                icon: Icon(
+                  Icons.person,
+                  color: Theme.of(context).iconTheme.color,
+                ),
               )
             ],
           ),
-          const SizedBox(
-            height: 20,
-          ),
+          mediumVerticalSizedBox,
           SearchInput(
             hintText: searchHintText,
             onTap: onSearchTapped,
+            backgroundColor: Theme.of(context).scaffoldBackgroundColor,
           ),
-          const SizedBox(
-            height: 20,
-          ),
+          mediumVerticalSizedBox,
         ],
       ),
     );

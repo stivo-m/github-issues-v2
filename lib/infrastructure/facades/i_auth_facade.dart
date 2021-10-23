@@ -10,9 +10,7 @@ abstract class IAuthFacade {
 
   final ICacheFacade cacheFacade;
 
-  Future<void> loginWithGithub(
-    String code,
-  );
+  Future<void>? login();
 
   Future<bool> logOut();
 }

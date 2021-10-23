@@ -16,11 +16,19 @@ class GithubIssue with _$GithubIssue {
     String? id,
     String? closedAt,
     String? createdAt,
-    String? repo,
-    List<GithubComment?>? comments,
+    GithubRepository? repository,
+    @JsonKey(name: 'comments') GithubCommentPayload? comments,
     bool? closed,
   }) = _GithubIssue;
 
   factory GithubIssue.fromJson(Map<String, dynamic> json) =>
       _$GithubIssueFromJson(json);
+}
+
+@freezed
+class GithubRepository with _$GithubRepository {
+  factory GithubRepository({String? id, String? name}) = _GithubRepository;
+
+  factory GithubRepository.fromJson(Map<String, dynamic> json) =>
+      _$GithubRepositoryFromJson(json);
 }

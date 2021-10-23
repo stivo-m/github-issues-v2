@@ -5,4 +5,6 @@ abstract class ICacheFacade {
   });
 
   Future<bool> removeAccessToken({required String tokenName});
+
+  String? getAccessToken({required String tokenName});
 }

@@ -2,7 +2,6 @@
 import 'package:flutter/material.dart';
 
 // Project imports:
-import 'package:github_issues/presentation/theme/text_styles.dart';
 
 class SearchInput extends StatelessWidget {
   const SearchInput({
@@ -26,24 +25,29 @@ class SearchInput extends StatelessWidget {
         padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 5),
         decoration: BoxDecoration(
           color: backgroundColor,
-          borderRadius: BorderRadius.circular(30),
+          border: Border.all(
+            color: Theme.of(context).dividerColor,
+          ),
+          borderRadius: BorderRadius.circular(10),
         ),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.start,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: <Widget>[
             // search icon
-            const Icon(
+            Icon(
               Icons.search,
-              color: Colors.black54,
+              color: Theme.of(context).iconTheme.color,
+              size: 18,
             ),
 
             const SizedBox(
-              width: 20,
+              width: 10,
             ),
             Text(
               hintText ?? '',
-              style: subtitleTextStyle.copyWith(color: Colors.black54),
+              style: Theme.of(context).textTheme.caption?.copyWith(
+                  fontSize: 14, color: Theme.of(context).iconTheme.color),
             )
           ],
         ),

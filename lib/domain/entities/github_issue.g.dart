@@ -14,12 +14,14 @@ _$_GithubIssue _$$_GithubIssueFromJson(Map<String, dynamic> json) =>
       id: json['id'] as String?,
       closedAt: json['closedAt'] as String?,
       createdAt: json['createdAt'] as String?,
-      repo: json['repo'] as String?,
-      comments: (json['comments'] as List<dynamic>?)
-          ?.map((e) => e == null
-              ? null
-              : GithubComment.fromJson(e as Map<String, dynamic>))
-          .toList(),
+      repository: json['repository'] == null
+          ? null
+          : GithubRepository.fromJson(
+              json['repository'] as Map<String, dynamic>),
+      comments: json['comments'] == null
+          ? null
+          : GithubCommentPayload.fromJson(
+              json['comments'] as Map<String, dynamic>),
       closed: json['closed'] as bool?,
     );
 
@@ -31,7 +33,19 @@ Map<String, dynamic> _$$_GithubIssueToJson(_$_GithubIssue instance) =>
       'id': instance.id,
       'closedAt': instance.closedAt,
       'createdAt': instance.createdAt,
-      'repo': instance.repo,
+      'repository': instance.repository,
       'comments': instance.comments,
       'closed': instance.closed,
+    };
+
+_$_GithubRepository _$$_GithubRepositoryFromJson(Map<String, dynamic> json) =>
+    _$_GithubRepository(
+      id: json['id'] as String?,
+      name: json['name'] as String?,
+    );
+
+Map<String, dynamic> _$$_GithubRepositoryToJson(_$_GithubRepository instance) =>
+    <String, dynamic>{
+      'id': instance.id,
+      'name': instance.name,
     };

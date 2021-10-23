@@ -2,7 +2,6 @@
 import 'package:flutter/material.dart';
 
 // Project imports:
-import 'package:github_issues/presentation/theme/text_styles.dart';
 
 class Badge extends StatelessWidget {
   const Badge({
@@ -17,17 +16,20 @@ class Badge extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 100,
-      width: 150,
+      height: 30,
+      width: 80,
       decoration: BoxDecoration(
         color: backgroundColor,
         borderRadius: BorderRadius.circular(40),
       ),
-      padding: const EdgeInsets.all(8),
+      padding: const EdgeInsets.all(5),
       child: Center(
         child: Text(
           text,
-          style: subtitleTextStyle,
+          style: Theme.of(context).textTheme.caption?.copyWith(
+                color: Colors.white,
+                fontWeight: FontWeight.bold,
+              ),
         ),
       ),
     );

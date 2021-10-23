@@ -1,4 +1,5 @@
 // Package imports:
+import 'package:github_issues/domain/objects/endpoints.dart';
 import 'package:http/http.dart';
 
 /// [IHttpClient] provides the basic graphQl client that
@@ -7,8 +8,10 @@ import 'package:http/http.dart';
 
 abstract class IHttpClient {
   /// Used when making a graphql query/mutation
-  Future<Response> query(
-      {required String query, Map<String, dynamic>? variables});
+  Future<dynamic> query(
+      {required String query,
+      String? endpoint = githubGraphqlEndpoint,
+      Map<String, dynamic>? variables});
 
   /// Used when making a call to a REST endpoint
   Future<Response> callRest(

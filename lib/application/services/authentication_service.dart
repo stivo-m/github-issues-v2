@@ -2,7 +2,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 
 // Project imports:
-import 'package:github_issues/domain/entities/user_profile.dart';
 import 'package:github_issues/infrastructure/repositories/app_http_client.dart';
 import 'package:github_issues/infrastructure/repositories/auth_repository.dart';
 import 'package:github_issues/infrastructure/repositories/cache_repository.dart';
@@ -26,8 +25,8 @@ class AuthenticationService {
     );
   }
 
-  Future<UserProfile?>? loginWithGithub() async {
-    return await authRepository?.initGithubLogin();
+  Future<void>? loginWithGithub() async {
+    return await authRepository?.login();
   }
 
   Future<void>? logOut() {

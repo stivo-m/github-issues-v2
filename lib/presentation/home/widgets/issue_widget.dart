@@ -6,8 +6,9 @@ import 'package:flutter/material.dart';
 import 'package:github_issues/application/services/utils.dart';
 import 'package:github_issues/domain/entities/github_issue.dart';
 import 'package:github_issues/domain/objects/app_strings.dart';
+import 'package:github_issues/domain/objects/spacers.dart';
 import 'package:github_issues/presentation/home/widgets/badge.dart';
-import 'package:github_issues/presentation/theme/text_styles.dart';
+import 'package:lucid_components/colors.dart';
 
 class IssueWidget extends StatelessWidget {
   const IssueWidget({
@@ -22,11 +23,11 @@ class IssueWidget extends StatelessWidget {
     return Container(
       padding: const EdgeInsets.symmetric(
         horizontal: 20,
-        vertical: 15,
+        vertical: 10,
       ),
       margin: const EdgeInsets.only(bottom: 10),
       width: double.maxFinite,
-      color: Colors.white,
+      color: Theme.of(context).cardColor,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
@@ -35,31 +36,36 @@ class IssueWidget extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: <Widget>[
               Text(
-                '$openedText ${Utils.formatDate(date: issue.createdAt)}',
-                style: smallSubtitleTextStyle,
+                '$openedText: ${Utils.formatDate(date: DateTime.parse(issue.createdAt!))}',
+                style: Theme.of(context).textTheme.caption,
               ),
               Badge(
                 text: issue.closed ?? false ? closedText : openText,
-                backgroundColor: issue.closed ?? false
-                    ? Colors.green[700]
-                    : Colors.blue[800],
+                backgroundColor:
+                    issue.closed ?? false ? secondaryColor : primaryErrorColor,
               ),
             ],
           ),
 
-          const SizedBox(
-            height: 20,
-          ),
+          mediumVerticalSizedBox,
 
           // the actual issue
           Text(
             issue.title ?? '',
-            style: bodyTextStyle,
+            style: Theme.of(context).textTheme.headline2,
           ),
 
-          const SizedBox(
-            height: 20,
+          smallVerticalSizedBox,
+
+          // description of the issue
+          Text(
+            issue.body ?? '',
+            style: Theme.of(context).textTheme.bodyText2,
+            maxLines: 4,
+            overflow: TextOverflow.ellipsis,
           ),
+
+          mediumVerticalSizedBox,
           // developer name and comments
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -76,13 +82,14 @@ class IssueWidget extends StatelessWidget {
                     ),
                     Text(
                       issue.user ?? '',
-                      style: smallSubtitleTextStyle,
+                      style: Theme.of(context).textTheme.caption,
                     ),
                   ],
                 ),
               ),
               Expanded(
                 child: Row(
+                  mainAxisAlignment: MainAxisAlignment.end,
                   children: <Widget>[
                     const Icon(
                       CupertinoIcons.chat_bubble,
@@ -92,13 +99,18 @@ class IssueWidget extends StatelessWidget {
                       width: 10,
                     ),
                     Text(
-                      '${issue.comments?.length} ${Utils.pluralizeText(count: issue.comments?.length ?? 0, singularText: commentText)}',
-                      style: smallSubtitleTextStyle,
+                      '${issue.comments?.comments?.length} ${Utils.pluralizeText(count: issue.comments?.comments?.length ?? 0, singularText: commentText)}',
+                      style: Theme.of(context).textTheme.caption,
                     ),
                   ],
                 ),
               ),
             ],
+          ),
+
+          mediumVerticalSizedBox,
+          Divider(
+            color: Theme.of(context).dividerColor,
           ),
         ],
       ),
