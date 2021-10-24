@@ -22,7 +22,7 @@ class RouterGenerator {
 
       case AppRoutes.profileRoute:
         return MaterialPageRoute(
-          builder: (_) => const ProfilePage(),
+          builder: (_) => ProfilePage(),
         );
 
       default:
